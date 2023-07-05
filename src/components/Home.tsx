@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollar, faTruck, faBox, faUser, faArrowUp, faArrowDown, faEllipsisVertical, faSort, faEye, faEdit, faTrash, faChevronLeft, faChevronRight, faChartBar, faChartColumn } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({mobile}) {
   const [popup, setPopup] = useState();
 
   const actions = [
@@ -173,7 +173,7 @@ export default function Home() {
         <button className=" px-4 py-2 w-[max-content] ml-auto bg-purple-500 text-white font-medium text-sm rounded-md"><FontAwesomeIcon icon={faChartColumn} /> Create report</button>
         </div>
         
-      <div className=" grid grid-cols-2 gap-5 p-2 bg-purple-100 bg-opacity-70 rounded-xl">
+      <div className={` grid ${mobile ? "grid-cols-2 " : " grid-cols-4 "}  gap-5 p-2 bg-purple-100 bg-opacity-70 rounded-xl `}>
         {actions.map((action) => {
           const number = parseFloat(action.analytics);
           console.log(number);
