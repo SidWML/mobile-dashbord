@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDollar, faTruck, faBox, faUser, faArrowUp, faArrowDown, faEllipsisVertical, faSort, faEye, faEdit, faTrash, faChevronLeft, faChevronRight, faChartBar, faChartColumn } from "@fortawesome/free-solid-svg-icons";
+import { faDollar, faTruck, faBox, faUser, faArrowUp, faArrowDown, faEllipsisVertical, faSort, faEye, faEdit, faTrash, faChevronLeft, faChevronRight, faChartBar, faChartColumn, faPen, faLink } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import Input from "./generics/Input";
 
-export default function Home({mobile}) {
+export default function Home({mobile, loggedIn,setLoggedIn}) {
   const [popup, setPopup] = useState();
-
+  
   const actions = [
     {
       id: 1,
@@ -167,11 +168,22 @@ export default function Home({mobile}) {
   const tableHeaders = Object.keys(ordersTable[0])
 
   return (
-    <div className=" p-4 flex flex-col gap-5 z-[3] ">
+    loggedIn ? (
+      <div className=" p-4 flex flex-col gap-5 z-[3] ">
+      <div style={{boxShadow:" rgba(0,0,0,.05) 0 1px 4px"}}  className=" w-full flex justify-between items-center  px-3 py-4 bg-white  rounded-lg">
+       <div className="">
+       <h1 className=" font-semibold text-xl">Welcome Back, Peter</h1>
+        <p className=" font-light text-sm text-slate-600">Here is your business statistics.</p>    </div> 
+        <div className={`${mobile ? "w-[20%] " : " w-[10%] "}`}>
+          <img src="/avatar-2.png" alt="" className="" />
+        </div>
+      </div>
+      <h1 className=" font-bold text-3xl text-[#a0a0a0]">Business Analytics</h1>
         <div className=" flex w-full justify-between ">
             <input type="date" name="" className="  px-4 py-2  shadow-md rounded-md" id=" " />
         <button className=" px-4 py-2 w-[max-content] ml-auto bg-purple-500 text-white font-medium text-sm rounded-md"><FontAwesomeIcon icon={faChartColumn} /> Create report</button>
         </div>
+        
         
       <div className={` grid ${mobile ? "grid-cols-2 " : " grid-cols-4 "}  gap-5 p-2 bg-purple-100 bg-opacity-70 rounded-xl `}>
         {actions.map((action) => {
@@ -257,7 +269,7 @@ export default function Home({mobile}) {
         </div>
       </div>
       <div style={{ boxShadow: " 0 0 .375rem .25rem rgba(161,172,184,.15)" }} className="p-3 rounded-xl bg-white ">
-        <div className=" w-full flex items-center  py-2 border-b justify-between">
+        <div className=" w-full flex items-center  py-2 border-b border-dashed justify-between">
           <h1 className=" font-bold text-xl">Recent Orders</h1>
           <div className={` flex items-center relative justify-center w-[40px] text- h-[40px] rounded-md font-medium text-xl `}>
             <FontAwesomeIcon onClick={() => (popup === "customers" ? setPopup() : setPopup("customers"))} icon={faEllipsisVertical} />
@@ -270,10 +282,10 @@ export default function Home({mobile}) {
             </div>
           </div>
         </div>
-        <div className=" overflow-x-scroll">
+        <div className=" overflow-x-scroll mt-4">
         <table className=" ">
            <thead className=" ">
-           <tr className="grid grid-cols-9 bg-[#f2f2f2] w-[max-content] ">
+           <tr className="grid grid-cols-9 bg-[#f7f5fb] w-[max-content] ">
            <th className="  py-2 space-x-2  col-span-0.5   font-medium text-md text-slate-600">
                 <span className="">Sl No</span>
               </th>
@@ -314,7 +326,7 @@ export default function Home({mobile}) {
            <tbody className="">
             {
                 ordersTable.map((order, index) => (
-                    <tr className={` grid grid-cols-9 ${ index % 2 ? " bg-[#f2f2f7] " : " "  }  text-center w-full`}>
+                    <tr className={` grid grid-cols-9 ${ index % 2 ? " bg-[#f5f5f5] " : " "  }  text-center w-full`}>
                {
                 tableHeaders.map((header, index) => (
                     index === ordersTable.length ? <th className="  py-2 break-words space-x-2 px-4 font-normal text-sm ">
@@ -324,11 +336,12 @@ export default function Home({mobile}) {
                   </th>
                 ))
                }
-               <th className=" w-full col-span-1 flex gap-2 text-slate-400 justify-center py-2 ">
-                <FontAwesomeIcon className=" hover:text-black" icon={faEye} />
-                <FontAwesomeIcon className=" hover:text-blue-500" icon={faEdit} />
-                <FontAwesomeIcon className=" hover:text-red-500" icon={faTrash} />
-               </th>
+                <td className=" py-2 px-6 min-w-[150px] max-w-[200px]  font-normal text-sm justify-center flex items-center gap-2">
+                            
+                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-blue-700 hover:text-white hover:bg-blue-700 border-blue-700"><FontAwesomeIcon icon={faLink} /></span>
+                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-[#05a29e] hover:text-white hover:bg-[#05a29e] border-[#05a29e]"><FontAwesomeIcon icon={faPen} /></span>
+                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-red-500 hover:text-white hover:bg-red-500 border-red-500"><FontAwesomeIcon icon={faTrash} /></span>
+                        </td>
             </tr>
                 ))
             }
@@ -339,13 +352,38 @@ export default function Home({mobile}) {
             <div className=" font-medium text-sm">
                 showing 7 of 35
             </div>
-            <div className=" w-[max-content] flex gap-1 items-center">
-                <FontAwesomeIcon icon={faChevronLeft} />
-                <span className=" px-2  bg-red-500 text-white">1</span>
-                <FontAwesomeIcon icon={faChevronRight} />
+            <div className=" w-[max-content] flex gap-2 items-center">
+                <span className=" text-xs font-medium text-slate-400">Previous</span>
+                <span className=" px-2  bg-[#a855f7] rounded-md text-white">1</span>
+                <span className=" text-xs font-medium text-slate-900">next</span>
             </div>
         </div>
       </div>
     </div>
+    ) : (
+      <div className={` flex  bg-[#ffffff]   items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col ": " w-[820px] "} h-[100vh]`}>
+        <div className={`${mobile ? " max-w-[40%] " : " w-[50%] "}`}>
+          <img src="/login.png" alt="" className="" />
+        </div>
+        <div className={` ${mobile ? " w-full  " : " w-[50%] bg-[#2a454e]  h-full flex flex-col justify-center px-6 "}   space-y-8`}>
+          <div className=" w-full flex items-center justify-center ">
+            <img src="https://www.agnicart.com/static/images/logo/agni-cart.png" alt="" className="" />
+          </div>
+          <div className=" space-y-6 ">
+           <div className=" space-y-2">
+           <div className=" space-y-3">
+           <Input label="Email" textColor />
+            <Input textColor label="Password" />
+           </div>
+            <div className=" font-medium px-1 text-[11px] flex items-center justify-between text-slate-200">
+              <Link href="" className="  underline">don't have an account? register  </Link>
+              <Link href="" className="  underline">Forget Password  </Link>
+            </div>
+           </div>
+            <button onClick={() => setLoggedIn(true)} className=" text-[#ffc801] border-[#ffc801] hover:bg-[#ffc801] hover:text-[white] font-medium px-6 py-2 w-full border">Log in</button>
+          </div>
+        </div>
+      </div>
+    )
   );
 }
