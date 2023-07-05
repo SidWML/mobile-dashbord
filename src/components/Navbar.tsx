@@ -46,27 +46,27 @@ export default function Navbar({ loggedIn, setLoggedIn }) {
         {
           id: 2,
           name: "Collections",
-          href: "",
+          href: "/catalog/collections",
         },
         {
           id: 3,
           name: "Products",
-          href: "",
+          href: "/catalog/products",
         },
         {
           id: 4,
           name: "Brands",
-          href: "",
+          href: "/catalog/brands",
         },
         {
           id: 5,
           name: "Attributes",
-          href: "",
+          href: "/catalog/attributes",
         },
         {
           id: 6,
           name: "Variants",
-          href: "",
+          href: "/catalog/variants",
         },
       ],
     },
@@ -192,7 +192,7 @@ export default function Navbar({ loggedIn, setLoggedIn }) {
                 className="absolute shadow-lg right-0 top-[120%] bg-white rounded-lg w-[max-content] overflow-hidden h-[max-content] z-10"
               >
                 <div className=" w-full ">
-                  <div className="  py-2 px-6 bg-slate-400 text-white gap-3 border-b border-dashed">
+                  <div className="  py-2 px-6 bg-[#2a454e] text-white gap-3 border-b border-dashed">
                     <div className="">
                       <h1 className=" font-medium text-lg">All Notifications</h1>
                       <p className=" font-normal text-sm text-slate-100">No notifications to show</p>
@@ -204,14 +204,14 @@ export default function Navbar({ loggedIn, setLoggedIn }) {
             </Popover>
 
             <Popover className="relative w-full">
-              <Popover.Button className=" w-[40px] h-[40px] flex items-center justify-center rounded-full bg-slate-200">A</Popover.Button>
+              <Popover.Button className=" w-[40px] h-[40px] flex items-center justify-center rounded-full bg-slate-200">P</Popover.Button>
 
               <Popover.Panel
                 style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 15px 4px" }}
                 className="absolute shadow-lg right-0 top-[120%] bg-white rounded-lg w-[max-content] overflow-hidden h-[max-content] z-10"
               >
                 <div className="grid grid-cols-1 ">
-                  <div className=" flex py-2 px-4  items-center bg-slate-400 text-white gap-3 border-b border-dashed">
+                  <div className=" flex py-2 px-4  items-center bg-[#2a454e] text-white gap-3 border-b border-dashed">
                     <div className=" rounded-full overflow-hidden w-[40px] h-[40px]">
                       <img src="/avatar-3.png" alt="" className="" />
                     </div>

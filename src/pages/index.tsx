@@ -9,6 +9,7 @@ export const inter = Inter({ subsets: ['latin'] })
 
 export default function Index() {
   const [loggedIn, setLoggedIn] = useState(false)
+ 
   return (
     <main
       className={`space-y-2 flex  ${inter.className} `}

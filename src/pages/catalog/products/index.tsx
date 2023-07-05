@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-import Categories from '@/components/catalog/Categories'
+import Products from '@/components/catalog/Products'
 import React from 'react'
 
 export default function index() {
@@ -7,11 +7,11 @@ export default function index() {
     <div className=" flex w-full gap-8">
     <div className=" max-w-sm  min-w-sm  bg-[#f3f3f3]">
     <Navbar />
-    <Categories />
+    <Products mobile />
    </div>
    <div className="  w-[820px] bg-[#f3f3f3]">
     <Navbar />
-    <Categories  />
+    <Products  />
    </div>
    </div>
   )

@@ -8,6 +8,7 @@ import Button from '../generics/Button'
 import Table from '../generics/Table'
 import ReactSelecct from '../generics/ReactSelecct'
 import Seo from '../generics/Seo'
+import { Popover } from '@headlessui/react'
 
 export default function Posts({tablet}) {
     const router = useRouter()
@@ -114,7 +115,7 @@ export default function Posts({tablet}) {
     </div>
     </div>
     
-    <div style={{boxShadow:" rgba(0,0,0,.05) 0 1px 4px"}} className="px-3 space-y-4 py-4 bg-white rounded-lg">
+    <div style={{boxShadow:" rgba(0,0,0,.05) 0 1px 4px"}} className="px-3 z-[2] relative space-y-4 py-4 bg-white rounded-lg">
     <div className=" py-2 border-b border-dashed flex items-center justify-between">
     <h1 className="">All Posts</h1>
 
@@ -123,7 +124,7 @@ export default function Posts({tablet}) {
     <input type="text" className="px-10 py-1.5 w-full focus:ring-blue-600 focus:outline-blue-500  rounded-full border" />
     </div>
     </div>
-    <div className=" overflow-x-scroll">
+    <div className=" overflow-x-scroll relative z-[2]">
         <table className=" ">
            <thead className="">
            <tr className="flex  bg-[#f2f2f2] w-[max-content] ">
@@ -172,9 +173,76 @@ export default function Posts({tablet}) {
                }
              <td className=" py-2 px-6 min-w-[150px] max-w-[200px]  font-normal text-sm justify-center flex items-center gap-2">
                             
-                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-blue-700 hover:text-white hover:bg-blue-700 border-blue-700"><FontAwesomeIcon icon={faLink} /></span>
-                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-[#05a29e] hover:text-white hover:bg-[#05a29e] border-[#05a29e]"><FontAwesomeIcon icon={faPen} /></span>
-                            <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-red-500 hover:text-white hover:bg-red-500 border-red-500"><FontAwesomeIcon icon={faTrash} /></span>
+             <Popover className="relative ">
+                      <Popover.Button>
+                      <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-blue-700 hover:text-white hover:bg-blue-700 border-blue-700">
+                      <FontAwesomeIcon icon={faLink} />
+                    </span>
+                      </Popover.Button>
+
+                      <Popover.Panel
+                        style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 15px 4px" }}
+                        className="absolute shadow-lg right-0 top-[120%] bg-white rounded-lg w-[max-content] overflow-hidden h-[max-content] z-10"
+                      >
+                        <div className=" w-full ">
+                          <div className="  py-2 px-6 bg-purple-400 text-white gap-3 border-b border-dashed">
+                            <div className="">
+                              <h1 className=" font-medium text-lg">All Notifications</h1>
+                              <p className=" font-normal text-sm text-slate-100">No notifications to show</p>
+                            </div>
+                          </div>
+                          <div className="py-2 px-6 flex flex-col ">0 Notifications</div>
+                        </div>
+                      </Popover.Panel>
+                    </Popover>
+                    <Popover className="relative ">
+                      <Popover.Button>
+                      <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-[#05a29e] hover:text-white hover:bg-[#05a29e] border-[#05a29e]">
+                      <FontAwesomeIcon icon={faPen} />
+                    </span>
+                      </Popover.Button>
+
+                      <Popover.Panel
+                        style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 15px 4px" }}
+                        className="absolute shadow-lg right-0 top-[120%] bg-white rounded-lg w-[max-content] overflow-hidden h-[max-content] z-10"
+                      >
+                        <div className=" w-full ">
+                          <div className="  py-2 px-6 bg-purple-400 text-white gap-3 border-b border-dashed">
+                            <div className="">
+                              <h1 className=" font-medium text-lg">All Notifications</h1>
+                              <p className=" font-normal text-sm text-slate-100">No notifications to show</p>
+                            </div>
+                          </div>
+                          <div className="py-2 px-6 flex flex-col ">0 Notifications</div>
+                        </div>
+                      </Popover.Panel>
+                    </Popover>
+                    <Popover className="relative z-[5]">
+                      <Popover.Button>
+                      <span className=" block w-[30px] flex items-center justify-center rounded-lg h-[30px] border text-red-500 hover:text-white hover:bg-red-500 border-red-500">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </span>
+                      </Popover.Button>
+
+                      <Popover.Panel
+                        style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 15px 4px" }}
+                        className="absolute shadow-lg right-0 top-[120%] bg-white rounded-lg w-[max-content] overflow-hidden h-[max-content]  z-[999]"
+                      >
+                        <div className=" w-full ">
+                          <div className="  py-2 px-6  text-white bg-red-600 bg-opacity-70 gap-3 border-b border-dashed">
+                            <div className="">
+                              <h1 className=" font-medium text-lg">Are you Sure? </h1>
+                              <p className=" font-normal text-sm text-slate-100">you want to delete</p>
+                            </div>
+                          </div>
+                          <div className="py-4 px-6 flex gap-5 ">
+                            <Button label="Cancel"  bgColor="bg-slate-600" />
+                            <Button label="Delete"  bgColor="bg-red-500" />
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Popover>
+                    
                         </td>
             </tr>
                 ))

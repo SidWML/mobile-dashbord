@@ -8,8 +8,8 @@ export default function Seo() {
     const [showseo, setShowSeo] = useState(false)
   return (
     <div style={{boxShadow:" rgba(0,0,0,.05) 0 1px 4px"}}  className=" w-full space-y-3 px-3 py-4 bg-white  rounded-lg">
-    <div onClick={() =>setShowSeo(!showseo)} className=" flex justify-between">
-    <div className=" py-2 w-[80%] border-b border-dashed">
+    <div onClick={() =>setShowSeo(!showseo)} className=" flex justify-between border-b border-dashed">
+    <div className=" py-2 w-[80%] ">
     <h1 className=" ">SEO Settings</h1>
     <p className=" text-xs font-light text-slate-600 text-[11px]">Add search engine title and description to make this product easier to find</p>
     </div>
