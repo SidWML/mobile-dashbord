@@ -26,7 +26,7 @@ import Button from "./generics/Button";
 
 export default function Home({ mobile, loggedIn, setLoggedIn }) {
   const [popup, setPopup] = useState();
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(false);
   const actions = [
     {
       id: 1,
@@ -177,6 +177,28 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
       status: "Unpaid",
     },
   ];
+const ordersDetails = [
+{
+  name:"Pending",
+  image:"/pending_prev_ui.png",
+  count:4
+},
+{
+  name:"Confirmed",
+  image:"/confirmed_prev_ui.png",
+  count:8
+},
+{
+  name:"Packing",
+  image:"/packing_prev_ui.png",
+  count:4
+},
+{
+  name:"Delivered",
+  image:"/delivered_prev_ui.png",
+  count:2
+},
+]
 
   const tableHeaders = Object.keys(ordersTable[0]);
 
@@ -250,7 +272,22 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
           );
         })}
       </div>
+      <div className={` grid ${mobile ? "grid-cols-2 " : " grid-cols-4 "}  gap-5 p-2 bg-red-100 bg-opacity-70 rounded-xl `}>
+        {ordersDetails.map((orderDetail) => {
 
+          return (
+            <div style={{ boxShadow: " 0 0 .375rem .25rem rgba(161,172,184,.15)" }} className={`  p-3 bg-white rounded-xl`}>
+              <div className=" h-[100px] flex items-center w-full justify-center">
+                <img src={orderDetail.image} alt="" className=" w-[80%] " />
+              </div>
+             <div className=" w-full flex items-center justify-between pt-3">
+             <h1 className=" font-medium ">{orderDetail.name}</h1>
+             <h1 className="  font-bold text-lg">{orderDetail.count}</h1>
+             </div>
+            </div>
+          );
+        })}
+      </div>
       <div style={{ boxShadow: " 0 0 .375rem .25rem rgba(161,172,184,.15)" }} className=" p-3 bg-white rounded-xl">
         <img src="/img.png" alt="" className="" />
       </div>
@@ -454,7 +491,7 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
       </div>
     </div>
   ) : !loggedIn && form === "register" ? (
-    <div className={` flex  bg-[#ffffff]   items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}>
+    <div className={` flex    items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}>
       <div className={`${mobile ? " hidden " : " w-[50%] "}`}>
         <img src="/login.png" alt="" className="" />
       </div>
@@ -463,35 +500,40 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
           <img src="https://www.agnicart.com/static/images/logo/agni-cart.png" alt="" className="" />
         </div>
         <div className=" space-y-6 ">
-            <div className="w-full space-y-3   ">
-              <Link style={{ boxShadow: 'rgba(0,0,0,0.3) 0px 1px 3px' }} className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full" href="">
-                <img src="/google.png" alt="" className=" w-[20px] h-[20px]" />
-                <span className="">Sign up using Google </span>
-                {' '}
-              </Link>
-              <Link style={{ boxShadow: 'rgba(0,0,0,0.3) 0px 1px 3px' }} className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full" href="">
-                <img src="/fb.png" alt="" className=" w-[20px] h-[20px]" />
-                <span className="">Sign up using Facebook </span>
-                {' '}
-              </Link>
-
-            </div>
-            <div className=" flex items-center justify-between font-roboto w-full ">
-              <div className="w-[45%] h-[0.5px] bg-slate-300" />
-              <span className="block text-white text-xs">OR</span>
-              <div className="w-[45%] h-[0.5px] bg-slate-300" />
-              <hr />
-            </div>
+          <div className="w-full space-y-3   ">
+            <Link
+              style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 3px" }}
+              className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full"
+              href=""
+            >
+              <img src="/google.png" alt="" className=" w-[20px] h-[20px]" />
+              <span className="">Sign up using Google </span>{" "}
+            </Link>
+            <Link
+              style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 3px" }}
+              className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full"
+              href=""
+            >
+              <img src="/fb.png" alt="" className=" w-[20px] h-[20px]" />
+              <span className="">Sign up using Facebook </span>{" "}
+            </Link>
+          </div>
+          <div className=" flex items-center justify-between font-roboto w-full ">
+            <div className="w-[45%] h-[0.5px] bg-slate-300" />
+            <span className="block text-white text-xs">OR</span>
+            <div className="w-[45%] h-[0.5px] bg-slate-300" />
+            <hr />
+          </div>
           <div className=" space-y-2">
             <div className=" space-y-3">
-            <Input label="Full Name" textColor />
+              <Input label="Full Name" textColor />
               <Input label="Email" textColor />
               <Input textColor label="Password" />
             </div>
             <div className=" font-medium px-1 text-[11px] flex items-center justify-between text-slate-200">
-            <button onClick={() => setForm("login")} className="  underline">
-            already have an account? Log In {" "}
-          </button>
+              <button onClick={() => setForm("login")} className="  underline">
+                already have an account? Log In{" "}
+              </button>
               <button onClick={() => setForm("forget")} className="  underline">
                 Forget Password{" "}
               </button>
@@ -507,7 +549,9 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
       </div>
     </div>
   ) : !loggedIn && form === "forget" ? (
-    <div className={` flex  bg-[#ffffff]   items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}>
+    <div
+      className={` flex     items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}
+    >
       <div className={`${mobile ? " hidden " : " w-[50%] "}`}>
         <img src="/login.png" alt="" className="" />
       </div>
@@ -538,55 +582,62 @@ export default function Home({ mobile, loggedIn, setLoggedIn }) {
         </div>
       </div>
     </div>
-  ) : <div className={` flex  bg-[#ffffff]   items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}>
-  <div className={`${mobile ? " hidden " : " w-[50%] "}`}>
-    <img src="/login.png" alt="" className="" />
-  </div>
-  <div className={` ${mobile ? " w-full  " : " w-[50%] bg-[#2a454e]  h-full flex flex-col justify-center px-6 "}   space-y-8`}>
-    <div className=" w-full flex items-center justify-center ">
-      <img src="https://www.agnicart.com/static/images/logo/agni-cart.png" alt="" className="" />
-    </div>
-    <div className=" space-y-6 ">
-        <div className="w-full space-y-3   ">
-          <Link style={{ boxShadow: 'rgba(0,0,0,0.3) 0px 1px 3px' }} className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full" href="">
-            <img src="/google.png" alt="" className=" w-[20px] h-[20px]" />
-            <span className="">Log in using Google </span>
-            {' '}
-          </Link>
-          <Link style={{ boxShadow: 'rgba(0,0,0,0.3) 0px 1px 3px' }} className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full" href="">
-            <img src="/fb.png" alt="" className=" w-[20px] h-[20px]" />
-            <span className="">Log in using Facebook </span>
-            {' '}
-          </Link>
-
+  ) : (
+    <div className={` flex   items-center ${mobile ? " bg-[#2a454e]  py-[60px] px-6 w-[24rem] flex-col justify-center " : " w-[820px] "} h-[100vh]`}>
+      <div className={`${mobile ? " hidden " : " w-[50%] "}`}>
+        <img src="/login.png" alt="" className="" />
+      </div>
+      <div className={` ${mobile ? " w-full  " : " w-[50%] bg-[#2a454e]  h-full flex flex-col justify-center px-6 "}   space-y-8`}>
+        <div className=" w-full flex items-center justify-center ">
+          <img src="https://www.agnicart.com/static/images/logo/agni-cart.png" alt="" className="" />
         </div>
-        <div className=" flex items-center justify-between font-roboto w-full ">
-          <div className="w-[45%] h-[0.5px] bg-slate-300" />
-          <span className="block text-white text-xs">OR</span>
-          <div className="w-[45%] h-[0.5px] bg-slate-300" />
-          <hr />
-        </div>
-      <div className=" space-y-2">
-        <div className=" space-y-3">
-          <Input label="Email" textColor />
-          <Input textColor label="Password" />
-        </div>
-        <div className=" font-medium px-1 text-[11px] flex items-center justify-between text-slate-200">
-          <button onClick={() => setForm("register")} className="  underline">
-            don't have an account? Register{" "}
-          </button>
-          <button onClick={() => setForm("forget")} className="  underline">
-            Forget Password{" "}
+        <div className=" space-y-6 ">
+          <div className="w-full space-y-3   ">
+            <Link
+              style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 3px" }}
+              className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full"
+              href=""
+            >
+              <img src="/google.png" alt="" className=" w-[20px] h-[20px]" />
+              <span className="">Log in using Google </span>{" "}
+            </Link>
+            <Link
+              style={{ boxShadow: "rgba(0,0,0,0.3) 0px 1px 3px" }}
+              className="  rounded-lg  space-x-2 flex font-normal font-roboto items-center justify-center  p-3 border border-yellow-500 text-white  w-full"
+              href=""
+            >
+              <img src="/fb.png" alt="" className=" w-[20px] h-[20px]" />
+              <span className="">Log in using Facebook </span>{" "}
+            </Link>
+          </div>
+          <div className=" flex items-center justify-between font-roboto w-full ">
+            <div className="w-[45%] h-[0.5px] bg-slate-300" />
+            <span className="block text-white text-xs">OR</span>
+            <div className="w-[45%] h-[0.5px] bg-slate-300" />
+            <hr />
+          </div>
+          <div className=" space-y-2">
+            <div className=" space-y-3">
+              <Input label="Email" textColor />
+              <Input textColor label="Password" />
+            </div>
+            <div className=" font-medium px-1 text-[11px] flex items-center justify-between text-slate-200">
+              <button onClick={() => setForm("register")} className="  underline">
+                don't have an account? Register{" "}
+              </button>
+              <button onClick={() => setForm("forget")} className="  underline">
+                Forget Password{" "}
+              </button>
+            </div>
+          </div>
+          <button
+            onClick={() => setLoggedIn(true)}
+            className=" text-[#ffc801] uppercase border-[#ffc801] rounded-lg hover:bg-[#ffc801] hover:text-[white] font-medium px-6 py-2 w-full border"
+          >
+            Login
           </button>
         </div>
       </div>
-      <button
-        onClick={() => setLoggedIn(true)}
-        className=" text-[#ffc801] uppercase border-[#ffc801] rounded-lg hover:bg-[#ffc801] hover:text-[white] font-medium px-6 py-2 w-full border"
-      >
-        Login
-      </button>
     </div>
-  </div>
-</div>
+  );
 }
